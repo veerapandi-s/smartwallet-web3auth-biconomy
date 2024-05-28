@@ -184,6 +184,12 @@ export default function Home() {
         to: chainConfigs[selectedChain].userRegistry,
         data: registerTx.data,
       };
+      
+      const amountInWei = await smartWallet?.getGasEstimate([tx1], {
+        paymasterServiceData : { mode : PaymasterMode.SPONSORED}
+      });
+      console.log("Gas Estimate", amountInWei);
+      
       // @ts-ignore
       const userOpResponse = await smartWallet?.sendTransaction(tx1, {
         paymasterServiceData: { mode: PaymasterMode.SPONSORED },
