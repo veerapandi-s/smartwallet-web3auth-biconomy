@@ -6,6 +6,7 @@ import {
   createSmartAccountClient
 } from "@biconomy/account";
 import { Web3Auth } from "@web3auth/modal";
+import { getPublicCompressed } from "@toruslabs/eccrypto";
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { CHAIN_NAMESPACES } from "@web3auth/base";
 
@@ -67,6 +68,7 @@ export default function Home() {
     privateKeyProvider: privateKeyProvider,
     clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENTID!,
     web3AuthNetwork: "sapphire_devnet",
+    sessionTime : (86400 * 7),
     uiConfig: {
       appName: "Veer Example",
       mode: "dark",
@@ -83,6 +85,10 @@ export default function Home() {
     if (!etherSigner || !chainConfigs[selectedChain].paymasterKey || !chainConfigs[selectedChain].bundler) {
       // TODO Handle error
       console.error("Ether Signer or biconomy Not Available");
+      console.log("Ether Signer", etherSigner);
+      console.log("chainConfigs", chainConfigs[selectedChain]);
+
+
       return null;
     }
     const sWallet = await createSmartAccountClient({
@@ -94,8 +100,16 @@ export default function Home() {
     setsmartWallet(sWallet);
     const address = await sWallet.getAccountAddress();
     setWalletAddress(address);
-    isRegistered();
     console.log("Smart wallet address", address);
+  }
+
+  const getToken = async () => {
+    // Incase of secp256k1 curve, get the app_pub_key
+    const app_scoped_privkey = await web3auth.provider?.request({
+      method: "eth_private_key", // use "private_key" for other non-evm chains
+    }) as string;
+    const app_pub_key = getPublicCompressed(Buffer.from(app_scoped_privkey.padStart(64, "0"), "hex")).toString("hex");
+    console.log(app_pub_key);
   }
 
   const connectUser = async () => {
@@ -111,13 +125,15 @@ export default function Home() {
       console.error("web3authProvider Not Available");
       return null;
     }
+    const user = await web3auth.getUserInfo();
+    console.log(user);
+    getToken();
     const ethersProvider = new ethers.BrowserProvider(web3authProvider);
     setEtherProvider(ethersProvider);
 
     const web3AuthSigner = await ethersProvider.getSigner();
     setEOAAddress(web3AuthSigner.address);
     setEtherSigner(web3AuthSigner);
-    createWallet();
   }
 
   const contractInstance = new ethers.Contract(
@@ -127,6 +143,11 @@ export default function Home() {
   )
 
   const isRegistered = async () => {
+    if(!walletAddress) {
+      console.error("Wallet Address Not Available");
+      return
+    }
+    console.log(walletAddress);
     const isUser = await contractInstance.isUserRegistered(walletAddress);
     setIsRegisterUser(isUser);
     console.log(isUser);
@@ -158,13 +179,27 @@ export default function Home() {
 
   useEffect(() => {
     const init = async () => {
+      console.log("Init Ran");
+
       await web3auth.initModal();
       if (!web3auth.connected) {
+        console.log("Not Connected");
+        return
+      } else if (web3auth.connected) {
+        console.log("Wallet Connected");
+        connectUser();
       }
-      connectUser();
     }
     init();
   }, [])
+
+  useEffect(() => {
+    createWallet();
+  }, [etherSigner])
+
+  useEffect(() => {
+    isRegistered();
+  }, [walletAddress])
 
   return (
     <div className={styles.content}>
@@ -178,7 +213,9 @@ export default function Home() {
       <button type="button" className="btn btn-primary" onClick={connectUser} >Connect</button>
       <br />
       <br />
-      <button type="button" className="btn btn-primary" onClick={createWallet}>Create Wallet</button>
+      <button type="button" className="btn btn-primary" onClick={() => {
+        createWallet()
+      }}>Create Wallet</button>
       <br />
       <br />
       <button type="button" className="btn btn-primary" onClick={isRegistered}>Check User</button>

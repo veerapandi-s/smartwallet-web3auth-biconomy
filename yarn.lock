@@ -335,6 +335,13 @@
     ethereum-cryptography "^2.1.3"
     json-stable-stringify "^1.1.1"
 
+"@toruslabs/openlogin-ed25519@^8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@toruslabs/openlogin-ed25519/-/openlogin-ed25519-8.1.0.tgz#02db909a65a18f50d4500d7a4e1910bdff4431d7"
+  integrity sha512-s36rFdrV8b99y7YlCbjaMaO+zbolzTLe2DKItUd0MhXJoJhcTMrgssM2yZRE+9sH3i2RocfbEmtwhVyfeQ2V9Q==
+  dependencies:
+    "@toruslabs/tweetnacl-js" "^1.0.4"
+
 "@toruslabs/openlogin-jrpc@^8.1.0", "@toruslabs/openlogin-jrpc@^8.1.1":
   version "8.1.1"
   resolved "https://registry.yarnpkg.com/@toruslabs/openlogin-jrpc/-/openlogin-jrpc-8.1.1.tgz#27ac1dea04ccfa99fef82251ae1dac2dbad0510e"
@@ -392,6 +399,11 @@
     "@toruslabs/metadata-helpers" "^5.1.0"
     loglevel "^1.9.1"
     socket.io-client "^4.7.4"
+
+"@toruslabs/tweetnacl-js@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@toruslabs/tweetnacl-js/-/tweetnacl-js-1.0.4.tgz#0f1965d1b93d4061472b07ed21d71c33ac533cce"
+  integrity sha512-h8fVemW5pstsKbm/fTx+y61dZkh5Pepy/92lsyKp83KErf96jT+w4LGx4nEgeAVrdYQDTLg2tO7vu/boEb23Iw==
 
 "@types/debug@^4.1.7":
   version "4.1.12"
