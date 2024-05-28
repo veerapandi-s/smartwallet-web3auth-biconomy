@@ -272,6 +272,23 @@
     "@swc/counter" "^0.1.3"
     tslib "^2.4.0"
 
+"@toruslabs/base-controllers@^5.6.0", "@toruslabs/base-controllers@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@toruslabs/base-controllers/-/base-controllers-5.7.0.tgz#43821888ae7f477af46e19c3ba669c4fb9a693d1"
+  integrity sha512-jBRdUJOg+A5uFzwAzS24uE6hZvbdRswXOJKlX1Z6xoOLHdNqhfhlhddi0F4Zck5H7Ez0zs/OPAy0K/+jBEKz1Q==
+  dependencies:
+    "@ethereumjs/util" "^9.0.3"
+    "@metamask/rpc-errors" "^6.2.1"
+    "@toruslabs/broadcast-channel" "^10.0.2"
+    "@toruslabs/http-helpers" "^6.1.1"
+    "@toruslabs/openlogin-jrpc" "^8.1.1"
+    "@toruslabs/openlogin-utils" "^8.1.2"
+    async-mutex "^0.5.0"
+    bignumber.js "^9.1.2"
+    bowser "^2.11.0"
+    lodash "^4.17.21"
+    loglevel "^1.9.1"
+
 "@toruslabs/base-controllers@^5.6.3":
   version "5.6.5"
   resolved "https://registry.yarnpkg.com/@toruslabs/base-controllers/-/base-controllers-5.6.5.tgz#f71085e7af47bf118ea434ecf52d485ecb6fc468"
@@ -320,6 +337,29 @@
   integrity sha512-Z3EINkbsgJx1t6jCDVIJjLSUEGUtNIeDjhMWmeDGOWcP/+v/yQ1hEvd1wfxEz4q5WqIHhevacmPiVxiJ4DljGQ==
   dependencies:
     elliptic "^6.5.4"
+
+"@toruslabs/ethereum-controllers@^5.6.2":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@toruslabs/ethereum-controllers/-/ethereum-controllers-5.7.0.tgz#8e751390dc7f42a278a3ace368fa6d76b4b97186"
+  integrity sha512-pYNKK3U5595TbXqnn+0n+JQfPmZGFjuL11e3+nKkVhN9I636uUxOh2Fq9+0gMp5AgQd4A4SmzQiofhDSDb6big==
+  dependencies:
+    "@ethereumjs/common" "^4.3.0"
+    "@ethereumjs/tx" "^5.3.0"
+    "@ethereumjs/util" "^9.0.3"
+    "@metamask/eth-sig-util" "^7.0.2"
+    "@metamask/rpc-errors" "^6.2.1"
+    "@toruslabs/base-controllers" "^5.7.0"
+    "@toruslabs/http-helpers" "^6.1.1"
+    "@toruslabs/openlogin-jrpc" "^8.1.1"
+    async-mutex "^0.5.0"
+    bignumber.js "^9.1.2"
+    bn.js "^5.2.1"
+    ethers "^6.12.1"
+    fast-json-patch "^3.1.1"
+    fast-safe-stringify "^2.1.1"
+    jsonschema "^1.4.1"
+    lodash "^4.17.21"
+    loglevel "^1.9.1"
 
 "@toruslabs/http-helpers@^6.1.0", "@toruslabs/http-helpers@^6.1.1":
   version "6.1.1"
@@ -516,6 +556,14 @@
     "@web3auth/base" "^8.6.1"
     "@web3auth/base-evm-adapter" "^8.6.1"
 
+"@web3auth/modal-react-hooks@^8.6.1":
+  version "8.6.1"
+  resolved "https://registry.yarnpkg.com/@web3auth/modal-react-hooks/-/modal-react-hooks-8.6.1.tgz#32c229874ce79922e6cb16f3d7348b9d20831b18"
+  integrity sha512-N8TznIC7P74Ntmh4fmTEubMQSE3DqEAsP7YQkRWCPwzfXn1TDEu8++PBCeK1mTP88H9BZqr2+dVxS4QEs4JeRA==
+  dependencies:
+    "@web3auth/base" "^8.6.1"
+    "@web3auth/modal" "^8.6.1"
+
 "@web3auth/modal@^8.6.1":
   version "8.6.1"
   resolved "https://registry.yarnpkg.com/@web3auth/modal/-/modal-8.6.1.tgz#469af1d5edb7c8abc6c3231ab00c3a2c2c33c56d"
@@ -571,6 +619,32 @@
     lodash.merge "^4.6.2"
     react-i18next "^14.1.1"
     react-qrcode-logo "^2.10.0"
+
+"@web3auth/wallet-services-plugin@^8.6.1":
+  version "8.6.1"
+  resolved "https://registry.yarnpkg.com/@web3auth/wallet-services-plugin/-/wallet-services-plugin-8.6.1.tgz#8f5b01cafb4f12a300526efaa5353846f9ca4d65"
+  integrity sha512-Ly58Ms/CBDTMlqdVogVszOTmS4rEie1lNbgvUU+0R2Em5hekHs3OSVO3DDhmpXz8Z7mIyJFAm46TnYXoNCfmbQ==
+  dependencies:
+    "@toruslabs/openlogin-jrpc" "^8.1.1"
+    "@web3auth/base" "^8.6.1"
+    "@web3auth/no-modal" "^8.6.1"
+    "@web3auth/ws-embed" "^2.0.3"
+    loglevel "^1.9.1"
+
+"@web3auth/ws-embed@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@web3auth/ws-embed/-/ws-embed-2.0.3.tgz#7e6c728b7d603f2c907fd922ed8cc42da22f7bff"
+  integrity sha512-332IBAUQehVIUeOEFJ3hiKMJjioPkTgGrq1tRrzF+CPj7gSaFcfrO6RSbrkvPi2zyFWRAGyaR3KQzLbPtwglxg==
+  dependencies:
+    "@metamask/rpc-errors" "^6.2.1"
+    "@toruslabs/base-controllers" "^5.6.0"
+    "@toruslabs/ethereum-controllers" "^5.6.2"
+    "@toruslabs/openlogin-jrpc" "^8.1.1"
+    "@toruslabs/openlogin-utils" "^8.1.2"
+    fast-deep-equal "^3.1.3"
+    loglevel "^1.9.1"
+    pump "^3.0.0"
+    readable-stream "^4.5.2"
 
 abitype@1.0.0:
   version "1.0.0"
@@ -880,6 +954,16 @@ events@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
+
+fast-deep-equal@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
+  integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
+
+fast-json-patch@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/fast-json-patch/-/fast-json-patch-3.1.1.tgz#85064ea1b1ebf97a3f7ad01e23f9337e72c66947"
+  integrity sha512-vf6IHUX2SBcA+5/+4883dsIjpBTqmfBjmYiWK1savxQmFk4JfBMLa7ynTYOs1Rolp/T1betJxHiGD3g1Mn8lUQ==
 
 fast-safe-stringify@^2.0.6, fast-safe-stringify@^2.1.1:
   version "2.1.1"

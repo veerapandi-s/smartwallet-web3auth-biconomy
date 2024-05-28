@@ -5,6 +5,7 @@ import {
   PaymasterMode,
   createSmartAccountClient
 } from "@biconomy/account";
+import { Web3AuthProvider, useWeb3Auth } from "@web3auth/modal-react-hooks";
 import { Web3Auth } from "@web3auth/modal";
 import { getPublicCompressed } from "@toruslabs/eccrypto";
 import { MetamaskAdapter } from "@web3auth/metamask-adapter";
@@ -16,6 +17,7 @@ import { ethers } from "ethers";
 
 import styles from "./page.module.css";
 import { contractABI } from "./contract/contractABI";
+import { web3AuthContextConfig } from "./web3AuthProviderProps";
 
 
 
@@ -50,8 +52,12 @@ const chainConfigs = [
   }
 ];
 
-
 export default function Home() {
+  // const {
+  //   isConnected
+  // } = useWeb3Auth();
+  // console.log("Status", status);
+
   const [etherProvider, setEtherProvider] = useState<ethers.BrowserProvider>();
   const [etherSigner, setEtherSigner] = useState<ethers.JsonRpcSigner>();
   const [selectedChain] = useState(0);
@@ -220,28 +226,29 @@ export default function Home() {
   }, [walletAddress])
 
   return (
-    <div className={styles.content}>
-      <p>Connected Chain : {chainConfigs[selectedChain].displayName}</p>
-      {isLogged ? (<p> User Logged In </p>) : (<p> User Logged Out </p>)}
-      {EOAAddress ? (<p> EOA Address : {EOAAddress} </p>) : null}
-      {walletAddress ? (<p> Smart Wallet Address : {walletAddress} </p>) : null}
-      {isRegisterUser ? (<p> User Entry Done : True </p>) : null}
-      {txHash ? (<p> Transaction Hash : {txHash} </p>) : null}
+    <Web3AuthProvider config={web3AuthContextConfig}>
+      <div className={styles.content}>
+        <p>Connected Chain : {chainConfigs[selectedChain].displayName}</p>
+        {isLogged ? (<p> User Logged In </p>) : (<p> User Logged Out </p>)}
+        {EOAAddress ? (<p> EOA Address : {EOAAddress} </p>) : null}
+        {walletAddress ? (<p> Smart Wallet Address : {walletAddress} </p>) : null}
+        {isRegisterUser ? (<p> User Entry Done : True </p>) : null}
+        {txHash ? (<p> Transaction Hash : {txHash} </p>) : null}
 
-      <button type="button" className="btn btn-primary" onClick={connectUser} >Connect</button>
-      <br />
-      <br />
-      <button type="button" className="btn btn-primary" onClick={() => {
-        createWallet()
-      }}>Create Wallet</button>
-      <br />
-      <br />
-      <button type="button" className="btn btn-primary" onClick={isRegistered}>Check User</button>
-      <br />
-      <br />
-      <button type="button" className="btn btn-primary" onClick={registerUser}>Register User</button>
+        <button type="button" className="btn btn-primary" onClick={connectUser} >Connect</button>
+        <br />
+        <br />
+        <button type="button" className="btn btn-primary" onClick={() => {
+          createWallet()
+        }}>Create Wallet</button>
+        <br />
+        <br />
+        <button type="button" className="btn btn-primary" onClick={isRegistered}>Check User</button>
+        <br />
+        <br />
+        <button type="button" className="btn btn-primary" onClick={registerUser}>Register User</button>
 
-    </div>
-
+      </div>
+    </Web3AuthProvider>
   );
 }
