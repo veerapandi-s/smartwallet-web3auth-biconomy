@@ -7,6 +7,8 @@ import {
 } from "@biconomy/account";
 import { Web3Auth } from "@web3auth/modal";
 import { getPublicCompressed } from "@toruslabs/eccrypto";
+import { MetamaskAdapter } from "@web3auth/metamask-adapter";
+
 import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { CHAIN_NAMESPACES } from "@web3auth/base";
 
@@ -14,6 +16,8 @@ import { ethers } from "ethers";
 
 import styles from "./page.module.css";
 import { contractABI } from "./contract/contractABI";
+
+
 
 
 
@@ -64,11 +68,23 @@ export default function Home() {
     config: { chainConfig: chainConfigs[selectedChain] },
   });
 
+  const metamaskAdapter = new MetamaskAdapter({
+    clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENTID!,
+    sessionTime: 3600, // 1 hour in seconds
+    web3AuthNetwork: "sapphire_devnet",
+    chainConfig: {
+      chainNamespace: CHAIN_NAMESPACES.EIP155,
+      chainId: chainConfigs[selectedChain].chainId,
+      rpcTarget: chainConfigs[selectedChain].rpcTarget, // This is the public RPC we have added, please pass on your own endpoint while creating an app
+    },
+  });
+
+
   const web3auth = new Web3Auth({
     privateKeyProvider: privateKeyProvider,
     clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENTID!,
     web3AuthNetwork: "sapphire_devnet",
-    sessionTime : (86400 * 7),
+    sessionTime: (86400 * 7),
     uiConfig: {
       appName: "Veer Example",
       mode: "dark",
@@ -80,6 +96,8 @@ export default function Home() {
       primaryButton: "socialLogin",
     },
   });
+  web3auth.configureAdapter(metamaskAdapter);
+
 
   const createWallet = async () => {
     if (!etherSigner || !chainConfigs[selectedChain].paymasterKey || !chainConfigs[selectedChain].bundler) {
@@ -143,7 +161,7 @@ export default function Home() {
   )
 
   const isRegistered = async () => {
-    if(!walletAddress) {
+    if (!walletAddress) {
       console.error("Wallet Address Not Available");
       return
     }

@@ -96,6 +96,11 @@
     "@metamask/utils" "^8.0.0"
     superstruct "^1.0.3"
 
+"@metamask/detect-provider@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@metamask/detect-provider/-/detect-provider-2.0.0.tgz#4bc2795e5e6f7d8b84b2e845058d2f222c99917d"
+  integrity sha512-sFpN+TX13E9fdBDh9lvQeZdJn4qYoRb/6QF2oZZK/Pn559IhCFacPMU1rMuqyXoFQF3JSJfii2l98B87QDPeCQ==
+
 "@metamask/eth-sig-util@^7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@metamask/eth-sig-util/-/eth-sig-util-7.0.2.tgz#741de634b0d6ca96ce1ee3d064ac6a27756d8d21"
@@ -449,6 +454,14 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@web3auth/base-evm-adapter@^8.6.1":
+  version "8.6.1"
+  resolved "https://registry.yarnpkg.com/@web3auth/base-evm-adapter/-/base-evm-adapter-8.6.1.tgz#75d8319e4a2ae354c00bc34e48ac811e5fa0b3d8"
+  integrity sha512-kPecOtOTQpH3Z1zR43kNx5Fsk15EjrgLlbl7HmWtLXmjQNPn7nbQwsjuuz0u3/uH6xCCTjmIfM0WBXiHoPsAcA==
+  dependencies:
+    "@toruslabs/base-controllers" "^5.6.3"
+    "@web3auth/base" "^8.6.1"
+
 "@web3auth/base-provider@^8.6.1":
   version "8.6.1"
   resolved "https://registry.yarnpkg.com/@web3auth/base-provider/-/base-provider-8.6.1.tgz#21040ecaa379dc165c51edf3bb0a67e9a1cd98a4"
@@ -493,6 +506,15 @@
     bignumber.js "^9.1.2"
     bn.js "^5.2.1"
     jsonschema "^1.4.1"
+
+"@web3auth/metamask-adapter@^8.6.1":
+  version "8.6.1"
+  resolved "https://registry.yarnpkg.com/@web3auth/metamask-adapter/-/metamask-adapter-8.6.1.tgz#900c92d4babbdf09816fdce31b3baf561193db8e"
+  integrity sha512-RwvVyVcxQFYsq2jvNmKUkTnrjNI7CJMHROzZ+wCBMMQEkPBpWAWo9m6j12thSuDqnc3NQzgqKx5UaSVh5JH5eQ==
+  dependencies:
+    "@metamask/detect-provider" "^2.0.0"
+    "@web3auth/base" "^8.6.1"
+    "@web3auth/base-evm-adapter" "^8.6.1"
 
 "@web3auth/modal@^8.6.1":
   version "8.6.1"
